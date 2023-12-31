@@ -7,6 +7,7 @@ The packages required for this script can be summarized in three categories:
 1) Packages needed for the creation of the network, its analysis and its transfer to Cytoscape
 2) Packages needed for the creation of the HTML report
 3) Packages needed for the plotting of the data extracted from the network
+
 The packages needed are those, make sure that they are all installed before launching the script.
 
 <pre>
