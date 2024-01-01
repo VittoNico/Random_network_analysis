@@ -10,25 +10,25 @@ The packages required for this script can be summarized in three categories:
 
 The packages needed are those, make sure that they are all installed before launching the script.
 
-<pre>
+```R
 library(igraph)
 library(ggplot2)
 library(htmltools)
 library(RCy3)
 library(htmlwidgets)
-</pre>
+```
 
 # Stage 1: Network Creation
 Now that all the packages are installed we can procede to the creation of the network. The package Igraph can provides different types of random networks. For this script we will utilize this
 
-<pre>
+```R
 set.seed(123)
 graph <- erdos.renyi.game(200, p = 0.05, directed = FALSE)
 plot(graph, main = "Network")
 </pre>
 With this script the network will be immediatly avaiable for vision. As you can see, most of the nodes are overlapping and it is difficult to visually interpret. The package Igraph provides a number of layout that can help to better analyze the network that we are working with. For a better visualization of the nodes the layout style graphopt is raccomanded
 
-<pre>
+```R
 layout <- layout.graphopt(graph)
 plot(
     graph,
@@ -40,30 +40,30 @@ plot(
 )
 png("network_graphopt_style.png", width = 1000, height = 1000)
 dev.off()
-</pre>
+```
 The script will modify the layout of the network for a bettere visualization and saves the image producted as a PNG file in the work directory. The parameter for which we provide numbers are for the modification of the size of the nodes, the etichettes and the bridges. These can be modified for the all the needs.
 All we need now for stage 1 is to upload the network on cytoscape. This is easily done with this script. WARNING: make sure that cytoscape is open before launching this script or it won't work.
 
-<pre>
+```R
 cytoscapePing()
 createNetworkFromIgraph(graph, title = "Network", collection = "Maastricht_Assignment")
-</pre>
+```
 
 # Stage 2: Analysis of the Network
 Now to the Network's Analysis. This script will directly extract info directly from the graph. This informations are not useful as they are but they will be utilized for the creation of the HTML report file
 
-<pre>
+```R
 degree_info <- degree(graph)
 closeness_info <- closeness(graph)
 betweenness_info <- betweenness(graph)
 clustering_info <- transitivity(graph)
 connected_components <- clusters(graph)$csize
-</pre>
+```
 
 # Stage 3: Report
 With the information obtained from the last script we can finally create a report file for our network. Before the compilation of the report we need to create a couple plot more. Here is the script for each of them.
 
-<pre>
+```R
 data <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
 mean_graph <- ggplot(data, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
@@ -93,14 +93,10 @@ betw_graph_dependency <- htmltools::htmlDependency(
 )
 betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_graph_dependency$src)
 mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
-</pre>
-
-```R
-betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_graph_dependency$src)
 ```
 
 The script not only will create the plots but for each of them it will make an HTML address for adding them to the report file. To obtain it, all we need to do is to use this final script.
-<pre>
+```R
 report <- paste0(
     "<style>",
     "  body { font-family: 'Arial', sans-serif; font-size: 28px; color: #333; }",
@@ -129,5 +125,5 @@ report <- paste0(
 )
 
 writeLines(report, "network_analysis_report.html")
-</pre>
+```
 With this script you will obtain a report file filled with the information needed, and also plots and network imagines. Fot opening the file HTML you can use your standard web browser, and the internet connection it is not needed.
