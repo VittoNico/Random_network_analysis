@@ -63,7 +63,7 @@ connected_components <- clusters(graph)$csize
 # Stage 3: Report
 With the information obtained from the last script we can finally create a report file for our network. Before the compilation of the report we need to create a couple plot more. Here is the script for each of them.
 
-<pre>
+<sup>
 data <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
 mean_graph <- ggplot(data, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
@@ -92,9 +92,10 @@ betw_graph_dependency <- htmltools::htmlDependency(
     stylesheet = FALSE
 )
 betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_graph_dependency$src)
-</pre>
-
 mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
+</sup>
+
+
 
 The script not only will create the plots but for each of them it will make an HTML address for adding them to the report file. To obtain it, all we need to do is to use this final script.
 <pre>
