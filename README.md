@@ -95,7 +95,9 @@ betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_gr
 mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
 </pre>
 
-
+```R
+betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_graph_dependency$src)
+```
 
 The script not only will create the plots but for each of them it will make an HTML address for adding them to the report file. To obtain it, all we need to do is to use this final script.
 <pre>
