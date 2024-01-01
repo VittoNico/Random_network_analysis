@@ -63,7 +63,7 @@ connected_components <- clusters(graph)$csize
 # Stage 3: Report
 With the information obtained from the last script we can finally create a report file for our network. Before the compilation of the report we need to create a couple plot more. Here is the script for each of them.
 
-<ore>
+<pre>
 data <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
 mean_graph <- ggplot(data, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
