@@ -76,7 +76,7 @@ mean_graph_dependency <- htmltools::htmlDependency(
     "mean_graph", "1.0.0", src = "mean_graph.png", script = FALSE,
     stylesheet = FALSE
 )
-mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
+
 data_bit <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
 mean_betweenness <- mean(betweenness_info)
 betw_graph <- ggplot(data_bit, aes(x = Node, y = Betweenness)) +
@@ -93,6 +93,8 @@ betw_graph_dependency <- htmltools::htmlDependency(
 )
 betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_graph_dependency$src)
 </pre>
+
+mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
 
 The script not only will create the plots but for each of them it will make an HTML address for adding them to the report file. To obtain it, all we need to do is to use this final script.
 <pre>
