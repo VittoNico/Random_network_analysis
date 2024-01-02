@@ -8,8 +8,18 @@ The packages required for this script can be summarized in three categories:
 2) Packages needed for the creation of the HTML report
 3) Packages needed for the plotting of the data extracted from the network
 
-The packages needed are those, make sure that they are all installed before launching the script.
+The packages needed are these, make sure that they are all installed before launching the script. In case you miss some of them, open the installer page of the package, there you can find everything you need
 
+```R
+install.packages("igraph")
+install.packages("ggplot2")
+install.packages("htmltools")
+install.packages("htmlwidgets")
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("RCy3")
+```
 ```R
 library(igraph)
 library(ggplot2)
