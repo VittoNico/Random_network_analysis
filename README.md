@@ -5,8 +5,8 @@ The script enables the creation of a random Network by using multiple R packages
 # Stage 0: R Packages
 The packages required for this script can be summarized in three categories:
 1) Packages needed for the creation of the network, its analysis and its transfer to Cytoscape
-2) Packages needed for the creation of the HTML report
-3) Packages needed for the plotting of the data extracted from the network
+2) Packages needed for the plotting of the data extracted from the network 
+3) Packages needed for the creation of the HTML report
 
 The packages needed are these, make sure that they are all installed before launching the script. In case you miss some of them, open the installer page of the package, there you can find everything you need
 
@@ -91,10 +91,6 @@ mean_graph <- ggplot(data, aes(x = Degree)) +
     ggtitle("Degree Distribution") +
     theme(plot.title = element_text(hjust = 0.5, family="TT Times New Roman"))    
 ggsave("mean_graph.png", mean_graph, device = "png", width = 5, height = 3)
-mean_graph_dependency <- htmltools::htmlDependency(
-    "mean_graph", "1.0.0", src = "mean_graph.png", script = FALSE,
-    stylesheet = FALSE
-)
 
 data_bit <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
 mean_betweenness <- mean(betweenness_info)
@@ -106,6 +102,11 @@ betw_graph <- ggplot(data_bit, aes(x = Node, y = Betweenness)) +
     theme_minimal() +
     theme(axis.title = element_text(size = 8), plot.title = element_text(size = 10))
 ggsave("betw_graph.png", betw_graph, device = "png", width = 5, height = 3)
+
+mean_graph_dependency <- htmltools::htmlDependency(
+    "mean_graph", "1.0.0", src = "mean_graph.png", script = FALSE,
+    stylesheet = FALSE
+)
 betw_graph_dependency <- htmltools::htmlDependency(
     "betw_graph", "1.0.0", src = "betw_graph.png", script = FALSE,
     stylesheet = FALSE
