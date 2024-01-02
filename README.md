@@ -12,7 +12,7 @@ The packages required for this script can be summarized in three categories:
 The packages needed are these, make sure that they are all installed before launching the script. In case you miss some of them, open the installer page of the package, there you can find everything you need
 
 ```R
-#Packages needed for the script
+# Packages needed for the script
 install.packages("igraph")
 install.packages("ggplot2")
 install.packages("htmltools")
@@ -23,7 +23,7 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install("RCy3")
 ```
 ```R
-#Packages needed for the script
+# Packages needed for the script
 library(igraph)
 library(ggplot2)
 library(htmltools)
@@ -34,11 +34,11 @@ library(htmlwidgets)
 # Stage 1: Network Creation
 Now that all the packages are installed we can procede to the creation of the network. The package Igraph can provides different types of random networks. For this script we will utilize the erdos.renyi.game. In case you prefer at the beginning to have at your disposal a graph that remain constant you can provide a seed for reproducibility.
 ```R
-#Set a seed for reproducibility. You can choose a number of your preference
+# Set a seed for reproducibility. You can choose a number of your preference
 set.seed(106)
 ```
 ```R
-#Produce a random Network and visualize it
+# Produce a random Network and visualize it
 graph <- erdos.renyi.game(200, p = 0.05, directed = FALSE)
 plot(graph, main = "Network")
 ```
@@ -46,7 +46,7 @@ plot(graph, main = "Network")
 With this script the network will be immediatly avaiable for vision. As you can see, most of the nodes are overlapping and it is difficult to visually interpret. The package Igraph provides a number of layout that can help to better analyze the network that we are working with. For a better visualization of the nodes the layout style graphopt is raccomanded
 
 ```R
-#Modify the layout of the Network for better visualization
+# Modify the layout of the Network for better visualization
 layout <- layout.graphopt(graph)
 plot(
     graph,
@@ -58,7 +58,7 @@ plot(
 )
 png("network_graphopt_style.png", width = 1000, height = 1000)
 dev.off()
-#Assign HTML coordinates to the stylized Network for the HTML report
+# Assign HTML coordinates to the stylized Network for the HTML report
 network_graphopt_style_dependency <- htmltools::htmlDependency(
     "network_graphopt_style", "1.0.0", src = "network_graphopt_style.png", script = FALSE,
     stylesheet = FALSE
@@ -74,40 +74,40 @@ https://cytoscape.org/download.html
 </pre>
 
 ```R
-#WARNING: Cytoscape must be open before launching the script
+# WARNING: Cytoscape must be open before launching the script
 #Connect to Cytoscape and upload the Network
 cytoscapePing()
 createNetworkFromIgraph(graph, title = "Network", collection = "Maastricht_Assignment")
 ```
 
 # Stage 2: Analysis of the Network
-Now to the Network's Analysis. This script will directly extract info directly from the graph. This informations are not useful as they are but they will be utilized for the creation of the HTML report file
+Now to the Network's Analysis. This script will directly extract the information for a standard network analyis directly from the the list that compose the graph. The informations are not useful as they are but they will be utilized for the creation of the HTML report file
 
 ```R
-#Extract the information needed for the analysis of the Network
-degree_info <- degree(graph)
-closeness_info <- closeness(graph)
-betweenness_info <- betweenness(graph)
-clustering_info <- transitivity(graph)
+# Extract the information needed for the analysis of the Network
+degree_info <- degree(graph) # Number of bridge that connect each nodes
+closeness_info <- closeness(graph) # Closeness to the center to each nodes
+betweenness_info <- betweenness(graph) # Crucial level of connectivity between nodes 
+clustering_info <- transitivity(graph) # Tendencies of each Node to form a group
 ```
 
 # Stage 3: Report
 With the information obtained from the last script we can finally create a report file for our network. Before the compilation of the report we need to create plots useful for a visualize the data. Here is the script for each of them.
 
 ```R
-#Create the plot for the Report
-data <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
-mean_graph <- ggplot(data, aes(x = Degree)) +
+# Create the plot of the Degree level
+data_deg <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
+mean_graph <- ggplot(data_deg, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
     labs(x = "Degree", y = "Frequency") +
     theme(axis.title=element_text(size=8, family="TT Times New Roman")) +
     ggtitle("Degree Distribution") +
     theme(plot.title = element_text(hjust = 0.5, family="TT Times New Roman"))    
 ggsave("mean_graph.png", mean_graph, device = "png", width = 5, height = 3)
-
-data_bit <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
+# Create a plot of the Betweeness level
+data_bet <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
 mean_betweenness <- mean(betweenness_info)
-betw_graph <- ggplot(data_bit, aes(x = Node, y = Betweenness)) +
+betw_graph <- ggplot(data_bet, aes(x = Node, y = Betweenness)) +
     geom_bar(stat = "identity", fill = "blue", alpha = 0.7) +
     geom_hline(yintercept = mean_betweenness, linetype = "dashed", color = "red", size = 1) +
     labs(x = "Node", y = "Betweenness") +
@@ -117,7 +117,7 @@ betw_graph <- ggplot(data_bit, aes(x = Node, y = Betweenness)) +
     theme(plot.title = element_text(hjust = 0.5, family="TT Times New Roman"))
 ggsave("betw_graph.png", betw_graph, device = "png", width = 5, height = 3)
 
-#Assign HTML coordinates to the plots for the HTML report
+# Assign HTML coordinates to the plots for the HTML report
 mean_graph_dependency <- htmltools::htmlDependency(
     "mean_graph", "1.0.0", src = "mean_graph.png", script = FALSE,
     stylesheet = FALSE
