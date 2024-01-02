@@ -130,7 +130,7 @@ betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_gr
 mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
 ```
 
-The script not only will create the plots but for each of them it will make an HTML address for adding them to the report file. With all the information and the plots ready, all we need is the final report. This is the script needed for obtained it. The style of the Report can be modified by changing parameters between the 'style' set. The report contain also a short explanation of the data obtained
+The script not only will create PNG file of the plots but for each of them it will make an HTML address for adding them to the report file. With all the information and the plots ready, all we need is the final report. This is the script needed for obtained it. The style of the report can be modified by changing parameters between the 'style' set. The report contain also a short explanation of the data obtained
 ```R
 report <- paste0(
     "<style>",
