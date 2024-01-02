@@ -32,11 +32,13 @@ library(htmlwidgets)
 ```
 
 # Stage 1: Network Creation
-Now that all the packages are installed we can procede to the creation of the network. The package Igraph can provides different types of random networks. For this script we will utilize the erdos.renyi.game.
-
+Now that all the packages are installed we can procede to the creation of the network. The package Igraph can provides different types of random networks. For this script we will utilize the erdos.renyi.game. In case you prefer at the beginning to have at your disposal a graph that remain constant you can provide a seed for reproducibility.
+```R
+#Set a seed for reproducibility. You can choose a number of your preference
+set.seed(106)
+```
 ```R
 #Produce a random Network and visualize it
-set.seed(123)
 graph <- erdos.renyi.game(200, p = 0.05, directed = FALSE)
 plot(graph, main = "Network")
 ```
