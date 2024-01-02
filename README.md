@@ -1,4 +1,4 @@
-# Network_analysis_Maastricht_Assignment_Nicoloso
+# Network_Analysis_Maastricht_Assignment_Nicoloso
 
 The script enables the creation of a random Network by using multiple R packages. The network will be uploaded on cytoscape for visualization. Not only that, the script will analize the basic feature of the network such the mean degree distribution of the nodes and will produce an HTML report file with statistics data and plots for further exploration.
 
@@ -58,7 +58,11 @@ network_graphopt_style_dependency <- htmltools::htmlDependency(
 network_graphopt_style_html <- sprintf('<div><img src="%s" alt="network graphopt style"></div>', network_graphopt_style_dependency$src)
 ```
 The script will modify the layout of the network for a bettere visualization and saves the image producted as a PNG file in the work directory. The parameter for which we provide numbers are for the modification of the size of the nodes, the etichettes and the bridges. These can be modified for the all the needs.
-All we need now for stage 1 is to upload the network on cytoscape. This is easily done with this script. WARNING: make sure that cytoscape is open before launching this script or it won't work.
+All we need now for stage 1 is to upload the network on cytoscape. This is easily done with this script. WARNING: make sure that cytoscape is open before launching this script or it won't work. In case cytoscape it is not installed here is the link for the dowload
+
+<pre>
+https://cytoscape.org/download.html
+</pre>
 
 ```R
 cytoscapePing()
