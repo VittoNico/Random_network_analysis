@@ -160,4 +160,4 @@ report <- paste0(
 
 writeLines(report, "network_analysis_report.html")
 ```
-With this script you will obtain a report file filled with the information needed, and also plots and network imagines. Fot opening the file HTML you can use your standard web browser, and the internet connection it is not needed.
+With this script you will obtain a report file filled with the information needed, and also plots and network imagines. For opening the HTML file you can use your standard web browser, and the internet connection is not needed.
