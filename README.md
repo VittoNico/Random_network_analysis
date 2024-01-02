@@ -4,6 +4,7 @@ The script enables the creation of a random Network by using multiple R packages
 
 # Stage 0: R Packages
 The packages required for this script can be summarized in three categories:
+
 1) Packages needed for the creation of the network, its analysis and its transfer to Cytoscape
 2) Packages needed for the plotting of the data extracted from the network 
 3) Packages needed for the creation of the HTML report
@@ -55,7 +56,7 @@ plot(
 )
 png("network_graphopt_style.png", width = 1000, height = 1000)
 dev.off()
-#Assign HTML coordinates for HTML report
+#Assign HTML coordinates to the stylized Network for the HTML report
 network_graphopt_style_dependency <- htmltools::htmlDependency(
     "network_graphopt_style", "1.0.0", src = "network_graphopt_style.png", script = FALSE,
     stylesheet = FALSE
@@ -81,6 +82,7 @@ createNetworkFromIgraph(graph, title = "Network", collection = "Maastricht_Assig
 Now to the Network's Analysis. This script will directly extract info directly from the graph. This informations are not useful as they are but they will be utilized for the creation of the HTML report file
 
 ```R
+#Extract the information needed for the analysis of the Network
 degree_info <- degree(graph)
 closeness_info <- closeness(graph)
 betweenness_info <- betweenness(graph)
@@ -91,6 +93,7 @@ clustering_info <- transitivity(graph)
 With the information obtained from the last script we can finally create a report file for our network. Before the compilation of the report we need to create plots useful for a visualize the data. Here is the script for each of them.
 
 ```R
+#Create the plot for the Report
 data <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
 mean_graph <- ggplot(data, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
@@ -111,6 +114,7 @@ betw_graph <- ggplot(data_bit, aes(x = Node, y = Betweenness)) +
     theme(axis.title = element_text(size = 8), plot.title = element_text(size = 10))
 ggsave("betw_graph.png", betw_graph, device = "png", width = 5, height = 3)
 
+#Assign HTML coordinates to the plots for the HTML report
 mean_graph_dependency <- htmltools::htmlDependency(
     "mean_graph", "1.0.0", src = "mean_graph.png", script = FALSE,
     stylesheet = FALSE
@@ -123,7 +127,7 @@ betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_gr
 mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
 ```
 
-The script not only will create the plots but for each of them it will make an HTML address for adding them to the report file. To obtain it, all we need to do is to use this final script.
+The script not only will create the plots but for each of them it will make an HTML address for adding them to the report file. With all the information and the plots ready, all we need is the final report. This is the script needed for obtained it. The style of the Report can be modified by changing parameters between the 'style' set. The report contain also a short explanation of the data obtained
 ```R
 report <- paste0(
     "<style>",
