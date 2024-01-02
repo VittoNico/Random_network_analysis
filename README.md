@@ -41,6 +41,11 @@ plot(
 )
 png("network_graphopt_style.png", width = 1000, height = 1000)
 dev.off()
+network_graphopt_style_dependency <- htmltools::htmlDependency(
+    "network_graphopt_style", "1.0.0", src = "network_graphopt_style.png", script = FALSE,
+    stylesheet = FALSE
+)
+network_graphopt_style_html <- sprintf('<div><img src="%s" alt="network graphopt style"></div>', network_graphopt_style_dependency$src)
 ```
 The script will modify the layout of the network for a bettere visualization and saves the image producted as a PNG file in the work directory. The parameter for which we provide numbers are for the modification of the size of the nodes, the etichettes and the bridges. These can be modified for the all the needs.
 All we need now for stage 1 is to upload the network on cytoscape. This is easily done with this script. WARNING: make sure that cytoscape is open before launching this script or it won't work.
