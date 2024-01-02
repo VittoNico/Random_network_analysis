@@ -77,7 +77,6 @@ degree_info <- degree(graph)
 closeness_info <- closeness(graph)
 betweenness_info <- betweenness(graph)
 clustering_info <- transitivity(graph)
-connected_components <- clusters(graph)$csize
 ```
 
 # Stage 3: Report
@@ -130,7 +129,6 @@ report <- paste0(
     "<h2>Basic Information</h2>",
     "<p>Number of Nodes: ", vcount(graph), " (the number of Nodes in your Network.)</p>",
     "<p>Number of Edges: ", ecount(graph), " (the number of Bridges connecting the in your Network.)</p>",
-    "<p>Number of Connected Components: ", length(connected_components), "</p>",
     "<h2>Degree Distribution</h2>",
     "<p>Mean Degree: ", mean(degree_info), " (the mean of the degrees of the nodes in your graph. High values = more connected network.)</p>",
     mean_graph_html,
