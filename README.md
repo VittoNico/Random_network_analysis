@@ -11,6 +11,7 @@ The packages required for this script can be summarized in three categories:
 The packages needed are these, make sure that they are all installed before launching the script. In case you miss some of them, open the installer page of the package, there you can find everything you need
 
 ```R
+#Packages needed for the script
 install.packages("igraph")
 install.packages("ggplot2")
 install.packages("htmltools")
@@ -21,6 +22,7 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install("RCy3")
 ```
 ```R
+#Packages needed for the script
 library(igraph)
 library(ggplot2)
 library(htmltools)
@@ -32,6 +34,7 @@ library(htmlwidgets)
 Now that all the packages are installed we can procede to the creation of the network. The package Igraph can provides different types of random networks. For this script we will utilize this
 
 ```R
+#Produce a random Network and visualize it
 set.seed(123)
 graph <- erdos.renyi.game(200, p = 0.05, directed = FALSE)
 plot(graph, main = "Network")
@@ -40,6 +43,7 @@ plot(graph, main = "Network")
 With this script the network will be immediatly avaiable for vision. As you can see, most of the nodes are overlapping and it is difficult to visually interpret. The package Igraph provides a number of layout that can help to better analyze the network that we are working with. For a better visualization of the nodes the layout style graphopt is raccomanded
 
 ```R
+#Modify the layout of the Network for better visualization
 layout <- layout.graphopt(graph)
 plot(
     graph,
@@ -51,6 +55,7 @@ plot(
 )
 png("network_graphopt_style.png", width = 1000, height = 1000)
 dev.off()
+#Assign HTML coordinates for HTML report
 network_graphopt_style_dependency <- htmltools::htmlDependency(
     "network_graphopt_style", "1.0.0", src = "network_graphopt_style.png", script = FALSE,
     stylesheet = FALSE
@@ -61,10 +66,13 @@ The script will modify the layout of the network for a bettere visualization and
 All we need now for stage 1 is to upload the network on cytoscape. This is easily done with this script. WARNING: make sure that cytoscape is open before launching this script or it won't work. In case cytoscape it is not installed here is the link for the dowload
 
 <pre>
+#Dowload site for cytoscape
 https://cytoscape.org/download.html
 </pre>
 
 ```R
+#WARNING: Cytoscape must be open before launching the script
+#Connect to Cytoscape and upload the Network
 cytoscapePing()
 createNetworkFromIgraph(graph, title = "Network", collection = "Maastricht_Assignment")
 ```
@@ -80,7 +88,7 @@ clustering_info <- transitivity(graph)
 ```
 
 # Stage 3: Report
-With the information obtained from the last script we can finally create a report file for our network. Before the compilation of the report we need to create a couple plot more. Here is the script for each of them.
+With the information obtained from the last script we can finally create a report file for our network. Before the compilation of the report we need to create plots useful for a visualize the data. Here is the script for each of them.
 
 ```R
 data <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
