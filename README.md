@@ -48,6 +48,7 @@ With this script the network will be immediatly avaiable for vision. As you can 
 ```R
 # Modify the layout of the Network for better visualization, and create file PNG
 layout <- layout.graphopt(graph)
+png("network_graphopt_style.png", width = 1000, height = 1000)
 plot(
     graph,
     layout = layout,
@@ -56,7 +57,6 @@ plot(
     vertex.size = 8,
     edge.arrow.size = 0.5 
 )
-png("network_graphopt_style.png", width = 1000, height = 1000)
 dev.off()
 # Assign HTML coordinates to the stylized Network for the HTML report
 network_graphopt_style_dependency <- htmltools::htmlDependency(
