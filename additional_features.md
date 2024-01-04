@@ -1,4 +1,4 @@
-# More Features
+# Additional Features
 As the assignment asked, the script create the network, covers the basic analyis  of the network and prepare a report file with the results. That doesn't mean that we have to stop here. For example, we can make different styles of network that suit our needs at the Stage 1. In the assignment the graphopt layout has been used to see an optimized network.
 
 ```R
