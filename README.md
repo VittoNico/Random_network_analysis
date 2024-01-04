@@ -54,7 +54,7 @@ plot(
     vertex.label.cex = 0.8,
     vertex.size = 8,
 )
-#Create PNG file of the stylized plot
+#Create a PNG file of the stylized plot
 png("Network_Graphopt_Style.png", width = 1000, height = 1000)
 plot(
     graph,
@@ -80,7 +80,7 @@ https://cytoscape.org/download.html
 
 ```R
 # WARNING: Cytoscape must be open before launching the script
-#Connect to Cytoscape and upload the Network
+# Connect to Cytoscape and upload the Network
 cytoscapePing()
 createNetworkFromIgraph(graph, title = "Network", collection = "Maastricht_Assignment")
 ```
@@ -102,13 +102,13 @@ With the information obtained from the last script, we can finally create a repo
 ```R
 # Create the plot of the Degree level
 data_deg <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
-mean_graph <- ggplot(data_deg, aes(x = Degree)) +
+degree_graph <- ggplot(data_deg, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
     labs(x = "Degree", y = "Frequency") +
     theme(axis.title=element_text(size=9)) +
     ggtitle("Degree Distribution") +
     theme(plot.title = element_text(hjust = 0.5))
-mean_graph  
+degree_graph  
 ggsave("mean_graph.png", mean_graph, device = "png", width = 5, height = 3)
 # Create a plot of the Betweeness level
 data_bet <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
@@ -139,7 +139,7 @@ mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_gr
 
 The script will not only create PNG files of the plots but it will also make an HTML address for each of them to add them to the report file. With all the information and the plots ready, all we need is the final report. This is the script needed to obtain it. The style of the report can be modified by changing parameters between the 'style' set. The report contains also a short explanation of the data obtained.
 ```R
-# The script for the HTML report file
+# Produce the HTML report file
 report <- paste0(
     "<style>",
     "  body { font-family: 'Arial', sans-serif; font-size: 28px; color: #333; }",
@@ -171,7 +171,7 @@ writeLines(report, "network_analysis_report.html")
 With this script you will obtain a report file filled with the information needed, as well as plots and network images. To open the HTML file, you can use your standard web browser, and an internet connection is not needed. However, if you prefer to stay in R, this final script will show the result of the analysis.
 
 ```R
-#Produce a report file for visualize the result in R
+# Produce a report file for visualize the result in R
 report_data <- c(
     "Network Analysis Report",
     "Number of Nodes:",vcount(graph),"(the number of nodes in your network.)",
