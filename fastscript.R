@@ -1,4 +1,4 @@
-```R
+
 # Packages needed for the script
 library(igraph)
 library(ggplot2)
@@ -105,4 +105,4 @@ report <- paste0(
 )
 
 writeLines(report, "network_analysis_report.html")
-```
+
