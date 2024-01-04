@@ -1,14 +1,4 @@
 # Packages needed for the script
-install.packages("igraph")
-install.packages("ggplot2")
-install.packages("htmltools")
-install.packages("htmlwidgets")
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("RCy3")
-
-# Packages needed for the script
 library(igraph)
 library(ggplot2)
 library(htmltools)
