@@ -1,4 +1,14 @@
 # Packages needed for the script
+install.packages("igraph")
+install.packages("ggplot2")
+install.packages("htmltools")
+install.packages("htmlwidgets")
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("RCy3")
+
+# Packages needed for the script
 library(igraph)
 library(ggplot2)
 library(htmltools)
@@ -43,11 +53,11 @@ network_graphopt_style_html <- sprintf('<div><img src="%s" alt="network graphopt
 cytoscapePing()
 createNetworkFromIgraph(graph, title = "Network", collection = "Maastricht_Assignment")
 
-# Extract the information needed for the analysis of the Network
-degree_info <- degree(graph) # Number of edges that connect each nodes
-closeness_info <- closeness(graph) # Closeness to the center to each nodes
+# Extract the information needed for the analysis of the network
+degree_info <- degree(graph) # Number of edges of each node
+closeness_info <- closeness(graph) # Closeness to the center of each node
 betweenness_info <- betweenness(graph) # Crucial level of connectivity between nodes 
-clustering_info <- transitivity(graph) # Tendencies of each Node to form a group
+clustering_info <- transitivity(graph) # Tendencies of each node to form a group
 
 # Create the plot of the Degree level
 data_deg <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
@@ -97,8 +107,8 @@ report <- paste0(
     "<h1>Network Analysis Report</h1>",
     network_graphopt_style_html,
     "<h2>Basic Information</h2>",
-    "<p>Number of Nodes: ", vcount(graph), " (the number of Nodes in your Network.)</p>",
-    "<p>Number of Edges: ", ecount(graph), " (the number of Edges connecting the in your Network.)</p>",
+    "<p>Number of Nodes: ", vcount(graph), " (the number of nodes in your network.)</p>",
+    "<p>Number of Edges: ", ecount(graph), " (the number of edges connecting the nodes in your Network.)</p>",
     "<h2>Degree Distribution</h2>",
     "<p>Mean Degree: ", mean(degree_info), " (mean of the degrees of the nodes in the graph. High values = more connected network.)</p>",
     mean_graph_html,
@@ -117,8 +127,8 @@ writeLines(report, "network_analysis_report.html")
 #Produce a report file for visualize the result in R
 report_data <- c(
     "Network Analysis Report",
-    "Number of Nodes:",vcount(graph),"(the number of Nodes in your network.)",
-    "Number of Edges:",ecount(graph),"(the number of Edges connecting the in your network.)",
+    "Number of Nodes:",vcount(graph),"(the number of nodes in your network.)",
+    "Number of Edges:",ecount(graph),"(the number of edges connecting the nodes in your network.)",
     "Mean Degree:",mean(degree_info),"(mean of the degrees of the nodes in the graph. High values = more connected network)",
     "Standard Deviation of Degree:",sd(degree_info),"(standard deviation of node degrees. High values = heterogeneity in the degree distribution.)",
     "Mean Closeness Centrality",mean(closeness_info),"(average of closeness centrality values across all Nodes. High values = Nodes in the graph are closer to each other in terms of the shortest path length.)",
@@ -126,5 +136,3 @@ report_data <- c(
     "Global Clustering Coefficient:",clustering_info,"(degree to which nodes in a graph tend to cluster together. High values = higher tendency for nodes in the graph to form clusters or groups)"
 )
 cat(report_data, sep = "\n")
-
-
