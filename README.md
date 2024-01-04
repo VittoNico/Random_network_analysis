@@ -54,7 +54,6 @@ plot(
     main = "Network_Graphopt_Style",
     vertex.label.cex = 0.8,
     vertex.size = 8,
-    edge.arrow.size = 0.5 
 )
 #Create PNG file of the stylized plot
 png("Network_Graphopt_Style.png", width = 1000, height = 1000)
@@ -64,7 +63,6 @@ plot(
     main = "Network_graphopt_style",
     vertex.label.cex = 0.8,
     vertex.size = 8,
-    edge.arrow.size = 0.5 
 )
 dev.off()
 # Assign HTML coordinates to the stylized Network for the HTML report
