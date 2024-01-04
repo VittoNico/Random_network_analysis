@@ -44,7 +44,7 @@ cytoscapePing()
 createNetworkFromIgraph(graph, title = "Network", collection = "Maastricht_Assignment")
 
 # Extract the information needed for the analysis of the Network
-degree_info <- degree(graph) # Number of bridge that connect each nodes
+degree_info <- degree(graph) # Number of edges that connect each nodes
 closeness_info <- closeness(graph) # Closeness to the center to each nodes
 betweenness_info <- betweenness(graph) # Crucial level of connectivity between nodes 
 clustering_info <- transitivity(graph) # Tendencies of each Node to form a group
@@ -56,9 +56,9 @@ mean_graph <- ggplot(data_deg, aes(x = Degree)) +
     labs(x = "Degree", y = "Frequency") +
     theme(axis.title=element_text(size=8)) +
     ggtitle("Degree Distribution") +
-    theme(plot.title = element_text(hjust = 0.5))    
+    theme(plot.title = element_text(hjust = 0.5))
+mean_graph  
 ggsave("mean_graph.png", mean_graph, device = "png", width = 5, height = 3)
-mean_graph
 # Create a plot of the Betweeness level
 data_bet <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
 mean_betweenness <- mean(betweenness_info)
@@ -97,11 +97,11 @@ report <- paste0(
     network_graphopt_style_html,
     "<h2>Basic Information</h2>",
     "<p>Number of Nodes: ", vcount(graph), " (the number of Nodes in your Network.)</p>",
-    "<p>Number of Edges: ", ecount(graph), " (the number of Bridges connecting the in your Network.)</p>",
+    "<p>Number of Edges: ", ecount(graph), " (the number of Edges connecting the in your Network.)</p>",
     "<h2>Degree Distribution</h2>",
-    "<p>Mean Degree: ", mean(degree_info), " (the mean of the degrees of the nodes in your graph. High values = more connected network.)</p>",
+    "<p>Mean Degree: ", mean(degree_info), " (mean of the degrees of the nodes in the graph. High values = more connected network.)</p>",
     mean_graph_html,
-    "<p>Standard Deviation of Degree: ",  sd(degree_info), " (the standard deviation of node degrees. High values = heterogeneity in the degree distribution.)</p>",
+    "<p>Standard Deviation of Degree: ",  sd(degree_info), " (standard deviation of node degrees. High values = heterogeneity in the degree distribution.)</p>",
     "<h2>Closeness Centrality</h2>",
     "<p>Mean Closeness Centrality: ", mean(closeness_info), " (average of closeness centrality values across all Nodes. High values = Nodes in the graph are closer to each other in terms of the shortest path length.)</p>",
     "<h2>Betweenness Centrality</h2>",
