@@ -58,7 +58,7 @@ degree_graph <- ggplot(data_deg, aes(x = Degree)) +
     ggtitle("Degree Distribution") +
     theme(plot.title = element_text(hjust = 0.5))
 degree_graph  
-ggsave("mean_graph.png", mean_graph, device = "png", width = 5, height = 3)
+ggsave("degree_graph.png", degree_graph, device = "png", width = 5, height = 3)
 # Create a plot of the Betweeness level
 data_bet <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
 mean_betweenness <- mean(betweenness_info)
@@ -104,7 +104,7 @@ report <- paste0(
     mean_graph_html,
     "<p>Standard Deviation of Degree: ",  sd(degree_info), " (standard deviation of node degrees. High values = heterogeneity in the degree distribution.)</p>",
     "<h2>Closeness Centrality</h2>",
-    "<p>Mean Closeness Centrality: ", mean(closeness_info), " (average of closeness centrality values across all Nodes. High values = nodes in the network are closer to each other in terms of the shortest path length.)</p>",
+    "<p>Mean Closeness Centrality: ", mean(closeness_info), " (average of closeness centrality values across all nodes. High values = nodes in the network are closer to each other in terms of the shortest path length.)</p>",
     "<h2>Betweenness Centrality</h2>",
     "<p>Mean Betweenness Centrality: ", mean(betweenness_info), " (average betweenness centrality across all nodes in the graph. High values = nodes in the network have a more crucial role in connecting different parts.)</p>",
     betw_graph_html,
@@ -121,7 +121,7 @@ report_data <- c(
     "Number of Edges:",ecount(graph),"(the number of edges connecting the nodes in the network.)",
     "Mean Degree:",mean(degree_info),"(average of the degrees of the nodes in the graph. High values = more connected network)",
     "Standard Deviation of Degree:",sd(degree_info),"(standard deviation of node degrees. High values = heterogeneity in the degree distribution.)",
-    "Mean Closeness Centrality:",mean(closeness_info),"(average of closeness centrality values across all Nodes. High values = Nodes in the network are closer to each other in terms of the shortest path length.)",
+    "Mean Closeness Centrality:",mean(closeness_info),"(average of closeness centrality values across all nodes. High values = Nodes in the network are closer to each other in terms of the shortest path length.)",
     "Mean Betweenness Centrality:",mean(betweenness_info),"(average betweenness centrality across all nodes in the graph. High values = nodes in the network have a more crucial role in connecting different parts.)",
     "Global Clustering Coefficient:",clustering_info,"(degree to which nodes in a graph tend to cluster together. High values = higher tendency for nodes in the network to form clusters or groups)"
 )
