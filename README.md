@@ -133,8 +133,9 @@ betw_graph_dependency <- htmltools::htmlDependency(
     "betw_graph", "1.0.0", src = "betw_graph.png", script = FALSE,
     stylesheet = FALSE
 )
+degree_graph_html <- sprintf('<div><img src="%s" alt="Degree Graph"></div>', degree_graph_dependency$src)
 betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_graph_dependency$src)
-degree_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', degree_graph_dependency$src)
+
 ```
 
 The script will not only create PNG files of the plots but it will also make an HTML address for each of them to add them to the report file. With all the information and the plots ready, all we need is the final report. This is the script needed to obtain it. The style of the report can be modified by changing parameters between the 'style' set. The report contains also a short explanation of the data obtained.
