@@ -106,7 +106,7 @@ data_deg <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
 mean_graph <- ggplot(data_deg, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
     labs(x = "Degree", y = "Frequency") +
-    theme(axis.title=element_text(size=8)) +
+    theme(axis.title=element_text(size=9)) +
     ggtitle("Degree Distribution") +
     theme(plot.title = element_text(hjust = 0.5))
 mean_graph  
