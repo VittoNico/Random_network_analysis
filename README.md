@@ -72,7 +72,7 @@ network_graphopt_style_dependency <- htmltools::htmlDependency(
 )
 network_graphopt_style_html <- sprintf('<div><img src="%s" alt="network graphopt style"></div>', network_graphopt_style_dependency$src)
 ```
-The script will modify the layout of the network for a bettere visualization and saves the image producted as a PNG file in the work directory. The parameter for which we provide numbers are for the modification of the size of the nodes, the etichettes and the bridges. These can be modified for the all the needs.
+The script will modify the layout of the network for a bettere visualization and saves the image producted as a PNG file in the work directory. The parameter for which we provide numbers are for the modification of the size of the nodes and the etichettes. These can be modified for the all the needs.
 All we need now for stage 1 is to upload the network on cytoscape. This is easily done with this script. WARNING: make sure that cytoscape is open before launching this script or it won't work. In case cytoscape it is not installed here is the link for the dowload
 
 <pre>
@@ -92,7 +92,7 @@ Now to the Network's Analysis. This script will directly extract the information
 
 ```R
 # Extract the information needed for the analysis of the Network
-degree_info <- degree(graph) # Number of bridge that connect each nodes
+degree_info <- degree(graph) # Number of edges that connect each nodes
 closeness_info <- closeness(graph) # Closeness to the center to each nodes
 betweenness_info <- betweenness(graph) # Crucial level of connectivity between nodes 
 clustering_info <- transitivity(graph) # Tendencies of each Node to form a group
@@ -153,7 +153,7 @@ report <- paste0(
     network_graphopt_style_html,
     "<h2>Basic Information</h2>",
     "<p>Number of Nodes: ", vcount(graph), " (the number of Nodes in your Network.)</p>",
-    "<p>Number of Edges: ", ecount(graph), " (the number of Bridges connecting the in your Network.)</p>",
+    "<p>Number of Edges: ", ecount(graph), " (the number of Edges connecting the in your Network.)</p>",
     "<h2>Degree Distribution</h2>",
     "<p>Mean Degree: ", mean(degree_info), " (the mean of the degrees of the nodes in your graph. High values = more connected network.)</p>",
     mean_graph_html,
