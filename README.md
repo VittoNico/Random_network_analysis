@@ -109,9 +109,9 @@ mean_graph <- ggplot(data_deg, aes(x = Degree)) +
     labs(x = "Degree", y = "Frequency") +
     theme(axis.title=element_text(size=8)) +
     ggtitle("Degree Distribution") +
-    theme(plot.title = element_text(hjust = 0.5))    
+    theme(plot.title = element_text(hjust = 0.5))
+mean_graph  
 ggsave("mean_graph.png", mean_graph, device = "png", width = 5, height = 3)
-mean_graph
 # Create a plot of the Betweeness level
 data_bet <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
 mean_betweenness <- mean(betweenness_info)
