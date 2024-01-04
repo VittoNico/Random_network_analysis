@@ -99,7 +99,7 @@ clustering_info <- transitivity(graph) # Tendencies of each Node to form a group
 ```
 
 # Stage 3: Report
-With the information obtained from the last script we can finally create a report file for our network. Before the compilation of the report we need to create plots useful for a visualize the data. Here is the script for each of them.
+With the information obtained from the last script we can finally create a report file for our network. Before the compilation of the report we need to create plots useful for the visualization of the data. Here is the script for each of them.
 
 ```R
 # Create the plot of the Degree level
