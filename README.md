@@ -9,7 +9,7 @@ The packages required for this script can be summarized in three categories:
 2) Packages needed for the plotting of the data extracted from the network 
 3) Packages needed for the creation of the HTML report
 
-The packages needed are these, make sure that they are all installed before launching the script. In case you miss some of them, open the installer page of the package, there you can find everything you need
+The packages needed are these, make sure that they are all installed before launching the script. In case you miss some of them, open the installer page of the package, there you can find everything you need.
 
 ```R
 # Packages needed for the script
@@ -32,7 +32,7 @@ library(htmlwidgets)
 ```
 
 # Stage 1: Network Creation
-Now that all the packages are installed we can procede to the creation of the network. The package Igraph can provides different types of random networks. For this script we will utilize the erdos.renyi.game. In case you prefer at the beginning to have at your disposal a graph that remain constant you can provide a seed for reproducibility.
+Now that all the packages are installed we can procede to the creation of the network. The package Igraph can provides different types of random networks. For this script we will utilize the erdos.renyi.game. In case you prefer at the beginning to have at your disposal a network that remain constant you can provide a seed for reproducibility.
 ```R
 # Set a seed for reproducibility. You can choose a number of your preference
 set.seed(106)
@@ -76,7 +76,7 @@ The script will modify the layout of the network for a bettere visualization and
 All we need now for stage 1 is to upload the network on Cytoscape. This is easily done with this script. WARNING: make sure that cytoscape is open before launching this script or it won't work. In case Cytoscape it is not installed here is the link for the dowload.
 
 <pre>
-#Dowload site for cytoscape
+#Dowload link for Cytoscape
 https://cytoscape.org/download.html
 </pre>
 
