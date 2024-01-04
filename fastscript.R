@@ -54,7 +54,7 @@ data_deg <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
 mean_graph <- ggplot(data_deg, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
     labs(x = "Degree", y = "Frequency") +
-    theme(axis.title=element_text(size=8)) +
+    theme(axis.title=element_text(size=9)) +
     ggtitle("Degree Distribution") +
     theme(plot.title = element_text(hjust = 0.5))
 mean_graph  
@@ -85,6 +85,7 @@ betw_graph_dependency <- htmltools::htmlDependency(
 betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_graph_dependency$src)
 mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
 
+# The script for the HTML report file
 report <- paste0(
     "<style>",
     "  body { font-family: 'Arial', sans-serif; font-size: 28px; color: #333; }",
@@ -112,3 +113,17 @@ report <- paste0(
 )
 
 writeLines(report, "network_analysis_report.html")
+
+#Produce a report file for visualize the result in R
+report_data <- c(
+    "Network Analysis Report" 
+    "Number of Nodes: ", vcount(graph), "(the number of Nodes in your Network.)",
+    "Number of Edges: ", ecount(graph), "(the number of Edges connecting the in your Network.)",
+    "Standard Deviation of Degree: ",  sd(degree_info), "(standard deviation of node degrees. High values = heterogeneity in the degree distribution.)",
+    "Mean Closeness Centrality: ", mean(closeness_info), "(average of closeness centrality values across all Nodes. High values = Nodes in the graph are closer to each other in terms of the shortest path length.)",
+    "Mean Betweenness Centrality: ", mean(betweenness_info), "(average betweenness centrality across all nodes in the graph. High values = nodes in the graph have a more crucial role in connecting different parts of the network.)",
+    "Global Clustering Coefficient: ", clustering_info, "(degree to which nodes in a graph tend to cluster together. High values = higher tendency for nodes in the graph to form clusters or groups)"
+)
+cat(report_data, sep = "\n")
+
+
