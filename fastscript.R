@@ -109,7 +109,7 @@ report <- paste0(
     "<p>Mean Betweenness Centrality: ", mean(betweenness_info), " (average betweenness centrality across all nodes in the graph. High values = nodes in the network have a more crucial role in connecting different parts.)</p>",
     betw_graph_html,
     "<h2>Clustering Coefficient</h2>",
-    "<p>Global Clustering Coefficient: ", clustering_info, " (degree to which nodes in a graph tend to cluster together. High values = higher tendency for network in the graph to form clusters or groups)</p>"
+    "<p>Global Clustering Coefficient: ", clustering_info, " (degree to which nodes in a graph tend to cluster together. High values = higher tendency for nodes in the network to form clusters or groups)</p>"
 )
 
 writeLines(report, "network_analysis_report.html")
