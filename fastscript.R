@@ -17,7 +17,7 @@ layout <- layout.graphopt(graph)
 plot(
     graph,
     layout = layout,
-    main = "Network_Graphopt_Style",
+    main = "Network_graphopt_style",
     vertex.label.cex = 0.8,
     vertex.size = 8,
 )
