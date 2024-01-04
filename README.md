@@ -113,6 +113,7 @@ mean_graph <- ggplot(data_deg, aes(x = Degree)) +
     ggtitle("Degree Distribution") +
     theme(plot.title = element_text(hjust = 0.5, family="TT Times New Roman"))    
 ggsave("mean_graph.png", mean_graph, device = "png", width = 5, height = 3)
+mean_graph
 # Create a plot of the Betweeness level
 data_bet <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
 mean_betweenness <- mean(betweenness_info)
@@ -124,6 +125,7 @@ betw_graph <- ggplot(data_bet, aes(x = Node, y = Betweenness)) +
     ggtitle("Betweenness Distribution with Mean") +
     theme_minimal() +
     theme(plot.title = element_text(hjust = 0.5, family="TT Times New Roman"))
+betw_graph
 ggsave("betw_graph.png", betw_graph, device = "png", width = 5, height = 3)
 
 # Assign HTML coordinates to the plots for the HTML report
