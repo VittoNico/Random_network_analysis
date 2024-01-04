@@ -97,8 +97,8 @@ report <- paste0(
     "<h1>Network Analysis Report</h1>",
     network_graphopt_style_html,
     "<h2>Basic Information</h2>",
-    "<p>Number of Nodes: ", vcount(graph), " (the number of nodes in your network.)</p>",
-    "<p>Number of Edges: ", ecount(graph), " (the number of edges connecting the nodes in your network.)</p>",
+    "<p>Number of Nodes: ", vcount(graph), " (the number of nodes in the network.)</p>",
+    "<p>Number of Edges: ", ecount(graph), " (the number of edges connecting the nodes in the network.)</p>",
     "<h2>Degree Distribution</h2>",
     "<p>Mean Degree: ", mean(degree_info), " (average of the degrees of the nodes in the graph. High values = more connected network.)</p>",
     mean_graph_html,
@@ -117,8 +117,8 @@ writeLines(report, "network_analysis_report.html")
 # Produce a report file for visualize the result in R
 report_data <- c(
     "Network Analysis Report",
-    "Number of Nodes:",vcount(graph),"(the number of nodes in your network.)",
-    "Number of Edges:",ecount(graph),"(the number of edges connecting the nodes in your network.)",
+    "Number of Nodes:",vcount(graph),"(the number of nodes in the network.)",
+    "Number of Edges:",ecount(graph),"(the number of edges connecting the nodes in the network.)",
     "Mean Degree:",mean(degree_info),"(average of the degrees of the nodes in the graph. High values = more connected network)",
     "Standard Deviation of Degree:",sd(degree_info),"(standard deviation of node degrees. High values = heterogeneity in the degree distribution.)",
     "Mean Closeness Centrality:",mean(closeness_info),"(average of closeness centrality values across all Nodes. High values = Nodes in the network are closer to each other in terms of the shortest path length.)",
