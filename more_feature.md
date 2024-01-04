@@ -9,6 +9,7 @@ but in other case we my want to see the simple connection between each node with
 ```R
 layout <- layout.circle(graph)
 ```
+Of course, changing styles can create some problem of visualization, but this can be fixed by
 
 The script covers the basic features of the Network analysis. But if a more deep exploration is required, Igraph offers a large number of analysis that can be added to the STAGE 2. Here is a small example to how extract more information with Igraph and add those information to the report file at the end of STAGE 3.
 
