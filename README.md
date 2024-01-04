@@ -11,7 +11,7 @@ The packages required for this script can be summarized in three categories:
 Below you can find the necessary packages. Please ensure that they are all installed before launching the script. In case you miss some, you can find everything you need within the installation script.
 
 ```R
-# Packages needed for the script
+# Packages installation
 install.packages("igraph")
 install.packages("ggplot2")
 install.packages("htmltools")
