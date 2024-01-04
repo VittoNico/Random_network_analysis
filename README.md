@@ -152,7 +152,7 @@ report <- paste0(
     network_graphopt_style_html,
     "<h2>Basic Information</h2>",
     "<p>Number of Nodes: ", vcount(graph), " (the number of nodes in your network.)</p>",
-    "<p>Number of Edges: ", ecount(graph), " (the number of edges connecting the nodes in your Network.)</p>",
+    "<p>Number of Edges: ", ecount(graph), " (the number of edges connecting the nodes in your network.)</p>",
     "<h2>Degree Distribution</h2>",
     "<p>Mean Degree: ", mean(degree_info), " (mean of the degrees of the nodes in the graph. High values = more connected network.)</p>",
     mean_graph_html,
