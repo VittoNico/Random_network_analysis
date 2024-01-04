@@ -1,4 +1,3 @@
-
 # Packages needed for the script
 library(igraph)
 library(ggplot2)
