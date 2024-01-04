@@ -1,18 +1,21 @@
-#Make sure that the package and Cytoscape are installed
-#Packages needed for the script
+```R
+# Packages needed for the script
 library(igraph)
 library(ggplot2)
 library(htmltools)
 library(RCy3)
 library(htmlwidgets)
 
-#Produce a random Network and visualize it
-set.seed(123)
+# Set a seed for reproducibility. You can choose a number of your preference
+set.seed(106)
+
+# Produce a random Network and visualize it
 graph <- erdos.renyi.game(200, p = 0.05, directed = FALSE)
 plot(graph, main = "Network")
 
-#Modify the layout of the Network for better visualization
+# Modify the layout of the Network for better visualization, and create file PNG
 layout <- layout.graphopt(graph)
+png("network_graphopt_style.png", width = 1000, height = 1000)
 plot(
     graph,
     layout = layout,
@@ -21,39 +24,38 @@ plot(
     vertex.size = 8,
     edge.arrow.size = 0.5 
 )
-png("network_graphopt_style.png", width = 1000, height = 1000)
 dev.off()
-#Assign HTML coordinates to the stylized Network for the HTML report
+# Assign HTML coordinates to the stylized Network for the HTML report
 network_graphopt_style_dependency <- htmltools::htmlDependency(
     "network_graphopt_style", "1.0.0", src = "network_graphopt_style.png", script = FALSE,
     stylesheet = FALSE
 )
 network_graphopt_style_html <- sprintf('<div><img src="%s" alt="network graphopt style"></div>', network_graphopt_style_dependency$src)
 
-#WARNING: Cytoscape must be open before launching the script
+# WARNING: Cytoscape must be open before launching the script
 #Connect to Cytoscape and upload the Network
 cytoscapePing()
 createNetworkFromIgraph(graph, title = "Network", collection = "Maastricht_Assignment")
 
-#Extract the information needed for the analysis of the Network
-degree_info <- degree(graph)
-closeness_info <- closeness(graph)
-betweenness_info <- betweenness(graph)
-clustering_info <- transitivity(graph)
+# Extract the information needed for the analysis of the Network
+degree_info <- degree(graph) # Number of bridge that connect each nodes
+closeness_info <- closeness(graph) # Closeness to the center to each nodes
+betweenness_info <- betweenness(graph) # Crucial level of connectivity between nodes 
+clustering_info <- transitivity(graph) # Tendencies of each Node to form a group
 
-#Create the plot for the Report
-data <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
-mean_graph <- ggplot(data, aes(x = Degree)) +
+# Create the plot of the Degree level
+data_deg <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
+mean_graph <- ggplot(data_deg, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
     labs(x = "Degree", y = "Frequency") +
     theme(axis.title=element_text(size=8, family="TT Times New Roman")) +
     ggtitle("Degree Distribution") +
     theme(plot.title = element_text(hjust = 0.5, family="TT Times New Roman"))    
 ggsave("mean_graph.png", mean_graph, device = "png", width = 5, height = 3)
-
-data_bit <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
+# Create a plot of the Betweeness level
+data_bet <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
 mean_betweenness <- mean(betweenness_info)
-betw_graph <- ggplot(data_bit, aes(x = Node, y = Betweenness)) +
+betw_graph <- ggplot(data_bet, aes(x = Node, y = Betweenness)) +
     geom_bar(stat = "identity", fill = "blue", alpha = 0.7) +
     geom_hline(yintercept = mean_betweenness, linetype = "dashed", color = "red", size = 1) +
     labs(x = "Node", y = "Betweenness") +
@@ -63,7 +65,7 @@ betw_graph <- ggplot(data_bit, aes(x = Node, y = Betweenness)) +
     theme(plot.title = element_text(hjust = 0.5, family="TT Times New Roman"))
 ggsave("betw_graph.png", betw_graph, device = "png", width = 5, height = 3)
 
-#Assign HTML coordinates to the plots for the HTML report
+# Assign HTML coordinates to the plots for the HTML report
 mean_graph_dependency <- htmltools::htmlDependency(
     "mean_graph", "1.0.0", src = "mean_graph.png", script = FALSE,
     stylesheet = FALSE
@@ -75,6 +77,7 @@ betw_graph_dependency <- htmltools::htmlDependency(
 betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_graph_dependency$src)
 mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
 
+# Create the HTML report file
 report <- paste0(
     "<style>",
     "  body { font-family: 'Arial', sans-serif; font-size: 28px; color: #333; }",
@@ -102,3 +105,4 @@ report <- paste0(
 )
 
 writeLines(report, "network_analysis_report.html")
+```
