@@ -5,9 +5,6 @@ library(htmltools)
 library(RCy3)
 library(htmlwidgets)
 
-# Stage 1: Network Creation
-Now that all the packages are installed we can procede to the creation of the network. The package Igraph can provides different types of random networks. For this script we will utilize the erdos.renyi.game. In case you prefer at the beginning to have at your disposal a graph that remain constant you can provide a seed for reproducibility.
-
 # Set a seed for reproducibility. You can choose a number of your preference
 set.seed(106)
 
