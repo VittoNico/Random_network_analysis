@@ -48,7 +48,16 @@ With this script the network will be immediatly avaiable for vision. As you can 
 ```R
 # Modify the layout of the Network for better visualization, and create file PNG
 layout <- layout.graphopt(graph)
-png("network_graphopt_style.png", width = 1000, height = 1000)
+plot(
+    graph,
+    layout = layout,
+    main = "Network_graphopt_style",
+    vertex.label.cex = 0.8,
+    vertex.size = 8,
+    edge.arrow.size = 0.5 
+)
+#Create PNG file of the stylized plot
+png("Network_Graphopt_Style.png", width = 1000, height = 1000)
 plot(
     graph,
     layout = layout,
