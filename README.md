@@ -177,6 +177,7 @@ report_data <- c(
     "Network Analysis Report",
     "Number of Nodes: ", vcount(graph), "(the number of Nodes in your Network.)",
     "Number of Edges: ", ecount(graph), "(the number of Edges connecting the in your Network.)",
+    "Mean Degree: ", mean(degree_info), " (mean of the degrees of the nodes in the graph. High values = more connected network)".
     "Standard Deviation of Degree: ",  sd(degree_info), "(standard deviation of node degrees. High values = heterogeneity in the degree distribution.)",
     "Mean Closeness Centrality: ", mean(closeness_info), "(average of closeness centrality values across all Nodes. High values = Nodes in the graph are closer to each other in terms of the shortest path length.)",
     "Mean Betweenness Centrality: ", mean(betweenness_info), "(average betweenness centrality across all nodes in the graph. High values = nodes in the graph have a more crucial role in connecting different parts of the network.)",
