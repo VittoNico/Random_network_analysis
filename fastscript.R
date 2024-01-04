@@ -21,7 +21,7 @@ plot(
     vertex.label.cex = 0.8,
     vertex.size = 8,
 )
-#Create PNG file of the stylized plot
+#Create a PNG file of the stylized plot
 png("Network_Graphopt_Style.png", width = 1000, height = 1000)
 plot(
     graph,
@@ -39,7 +39,7 @@ network_graphopt_style_dependency <- htmltools::htmlDependency(
 network_graphopt_style_html <- sprintf('<div><img src="%s" alt="network graphopt style"></div>', network_graphopt_style_dependency$src)
 
 # WARNING: Cytoscape must be open before launching the script
-#Connect to Cytoscape and upload the Network
+# Connect to Cytoscape and upload the Network
 cytoscapePing()
 createNetworkFromIgraph(graph, title = "Network", collection = "Maastricht_Assignment")
 
@@ -51,13 +51,13 @@ clustering_info <- transitivity(graph) # Tendencies of each node to form a group
 
 # Create the plot of the Degree level
 data_deg <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
-mean_graph <- ggplot(data_deg, aes(x = Degree)) +
+degree_graph <- ggplot(data_deg, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
     labs(x = "Degree", y = "Frequency") +
     theme(axis.title=element_text(size=9)) +
     ggtitle("Degree Distribution") +
     theme(plot.title = element_text(hjust = 0.5))
-mean_graph  
+degree_graph  
 ggsave("mean_graph.png", mean_graph, device = "png", width = 5, height = 3)
 # Create a plot of the Betweeness level
 data_bet <- data.frame(Node = 1:length(betweenness_info), Betweenness = betweenness_info)
@@ -85,7 +85,7 @@ betw_graph_dependency <- htmltools::htmlDependency(
 betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_graph_dependency$src)
 mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
 
-# The script for the HTML report file
+# Produce the HTML report file
 report <- paste0(
     "<style>",
     "  body { font-family: 'Arial', sans-serif; font-size: 28px; color: #333; }",
@@ -114,7 +114,7 @@ report <- paste0(
 
 writeLines(report, "network_analysis_report.html")
 
-#Produce a report file for visualize the result in R
+# Produce a report file for visualize the result in R
 report_data <- c(
     "Network Analysis Report",
     "Number of Nodes:",vcount(graph),"(the number of nodes in your network.)",
