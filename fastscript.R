@@ -12,7 +12,7 @@ set.seed(106)
 graph <- erdos.renyi.game(200, p = 0.05, directed = FALSE)
 plot(graph, main = "Network")
 
-# Modify the layout of the Network for better visualization, and create file PNG
+# Modify the layout of the Network for better visualization, and create a PNG file
 layout <- layout.graphopt(graph)
 plot(
     graph,
