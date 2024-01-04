@@ -34,7 +34,7 @@ library(htmlwidgets)
 # Stage 1: Network Creation
 Now that all the packages are installed we can procede to the creation of the network. The package Igraph can provides different types of random networks. For this script we will utilize the erdos.renyi.game. In case you prefer at the beginning to have at your disposal a network that remain constant you can provide a seed for reproducibility.
 ```R
-# Set a seed for reproducibility. You can choose a number of your preference
+# Set a seed for reproducibility. You can choose a number of your preference.
 set.seed(106)
 ```
 ```R
@@ -43,7 +43,7 @@ graph <- erdos.renyi.game(200, p = 0.05, directed = FALSE)
 plot(graph, main = "Network")
 ```
 
-With this script the network will be immediatly avaiable for vision. As you can see, most of the nodes are overlapping and it is difficult to visually interpret. The package Igraph provides a number of layout that can help to better analyze the network that we are working with. For a better visualization of the nodes the layout style graphopt is reccomanded
+With this script the network will be immediatly avaiable for vision. As you can see, most of the nodes are overlapping and it is difficult to visually interpret. The package Igraph provides a number of layout that can help to better analyze the network that we are working with. For a better visualization of the nodes the layout style graphopt is reccomanded.
 
 ```R
 # Modify the layout of the Network for better visualization, and create file PNG
@@ -73,7 +73,7 @@ network_graphopt_style_dependency <- htmltools::htmlDependency(
 network_graphopt_style_html <- sprintf('<div><img src="%s" alt="network graphopt style"></div>', network_graphopt_style_dependency$src)
 ```
 The script will modify the layout of the network for a bettere visualization and saves the image producted as a PNG file in the work directory. The parameter for which we provide numbers are for the modification of the size of the nodes and the etichettes. These can be modified for the all the needs.
-All we need now for stage 1 is to upload the network on Cytoscape. This is easily done with this script. WARNING: make sure that cytoscape is open before launching this script or it won't work. In case Cytoscape it is not installed here is the link for the dowload.
+All we need now for stage 1 is to upload the network on Cytoscape. This is easily done with this script. WARNING: make sure that cytoscape is open before launching this script or it won't work. In case Cytoscape it is not installed here is the link for the download.
 
 <pre>
 #Dowload link for Cytoscape
@@ -88,7 +88,7 @@ createNetworkFromIgraph(graph, title = "Network", collection = "Maastricht_Assig
 ```
 
 # Stage 2: Analysis of the Network
-Now to the Network's Analysis. This script will directly extract the information for a standard network analyis directly from the the list that compose the graph. The informations are not useful as they are but they will be utilized for the creation of the HTML report file
+Now to the Network's Analysis. This script will directly extract the information for a standard network analyis directly from the the list that compose the graph. The informations are not useful as they are but they will be utilized for the creation of the HTML report file.
 
 ```R
 # Extract the information needed for the analysis of the Network
@@ -139,8 +139,9 @@ betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_gr
 mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
 ```
 
-The script not only will create PNG file of the plots but for each of them it will make an HTML address for adding them to the report file. With all the information and the plots ready, all we need is the final report. This is the script needed for obtained it. The style of the report can be modified by changing parameters between the 'style' set. The report contain also a short explanation of the data obtained
+The script not only will create PNG file of the plots but for each of them it will make an HTML address for adding them to the report file. With all the information and the plots ready, all we need is the final report. This is the script needed for obtained it. The style of the report can be modified by changing parameters between the 'style' set. The report contain also a short explanation of the data obtained.
 ```R
+# The script for the HTML report file
 report <- paste0(
     "<style>",
     "  body { font-family: 'Arial', sans-serif; font-size: 28px; color: #333; }",
