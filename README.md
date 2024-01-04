@@ -45,7 +45,7 @@ plot(graph, main = "Network")
 With this script, the network will be immediately available and displayed. As you can see, most of the nodes are overlapping and, as such,  it is difficult to visually interpret the network. The package Igraph provides a number of layouts that can help to better analyse the network that we are working with. For better visualization of the nodes the layout style graphopt is recommended.
 
 ```R
-# Modify the layout of the Network for better visualization, and create file PNG
+# Modify the layout of the Network for better visualization, and create a PNG file
 layout <- layout.graphopt(graph)
 plot(
     graph,
