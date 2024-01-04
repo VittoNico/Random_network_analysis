@@ -125,8 +125,8 @@ betw_graph
 ggsave("betw_graph.png", betw_graph, device = "png", width = 5, height = 3)
 
 # Assign HTML coordinates to the plots for the HTML report
-mean_graph_dependency <- htmltools::htmlDependency(
-    "mean_graph", "1.0.0", src = "mean_graph.png", script = FALSE,
+degree_graph_dependency <- htmltools::htmlDependency(
+    "degree_graph", "1.0.0", src = "degree_graph.png", script = FALSE,
     stylesheet = FALSE
 )
 betw_graph_dependency <- htmltools::htmlDependency(
@@ -134,7 +134,7 @@ betw_graph_dependency <- htmltools::htmlDependency(
     stylesheet = FALSE
 )
 betw_graph_html <- sprintf('<div><img src="%s" alt="Betw Graph"></div>', betw_graph_dependency$src)
-mean_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', mean_graph_dependency$src)
+degree_graph_html <- sprintf('<div><img src="%s" alt="Mean Graph"></div>', degree_graph_dependency$src)
 ```
 
 The script will not only create PNG files of the plots but it will also make an HTML address for each of them to add them to the report file. With all the information and the plots ready, all we need is the final report. This is the script needed to obtain it. The style of the report can be modified by changing parameters between the 'style' set. The report contains also a short explanation of the data obtained.
@@ -155,7 +155,7 @@ report <- paste0(
     "<p>Number of Edges: ", ecount(graph), " (the number of edges connecting the nodes in the network.)</p>",
     "<h2>Degree Distribution</h2>",
     "<p>Mean Degree: ", mean(degree_info), " (average of the degrees of the nodes in the graph. High values = more connected network.)</p>",
-    mean_graph_html,
+    degree_graph_html,
     "<p>Standard Deviation of Degree: ",  sd(degree_info), " (standard deviation of node degrees. High values = heterogeneity in the degree distribution.)</p>",
     "<h2>Closeness Centrality</h2>",
     "<p>Mean Closeness Centrality: ", mean(closeness_info), " (average of closeness centrality values across all nodes. High values = nodes in the network are closer to each other in terms of the shortest path length.)</p>",
