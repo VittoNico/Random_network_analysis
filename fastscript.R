@@ -116,7 +116,7 @@ writeLines(report, "network_analysis_report.html")
 
 #Produce a report file for visualize the result in R
 report_data <- c(
-    "Network Analysis Report" 
+    "Network Analysis Report",
     "Number of Nodes: ", vcount(graph), "(the number of Nodes in your Network.)",
     "Number of Edges: ", ecount(graph), "(the number of Edges connecting the in your Network.)",
     "Standard Deviation of Degree: ",  sd(degree_info), "(standard deviation of node degrees. High values = heterogeneity in the degree distribution.)",
