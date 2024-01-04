@@ -109,9 +109,9 @@ data_deg <- data.frame(Node = 1:length(degree_info), Degree = degree_info)
 mean_graph <- ggplot(data_deg, aes(x = Degree)) +
     geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
     labs(x = "Degree", y = "Frequency") +
-    theme(axis.title=element_text(size=8, family="TT Times New Roman")) +
+    theme(axis.title=element_text(size=8)) +
     ggtitle("Degree Distribution") +
-    theme(plot.title = element_text(hjust = 0.5, family="TT Times New Roman"))    
+    theme(plot.title = element_text(hjust = 0.5))    
 ggsave("mean_graph.png", mean_graph, device = "png", width = 5, height = 3)
 mean_graph
 # Create a plot of the Betweeness level
@@ -121,10 +121,10 @@ betw_graph <- ggplot(data_bet, aes(x = Node, y = Betweenness)) +
     geom_bar(stat = "identity", fill = "blue", alpha = 0.7) +
     geom_hline(yintercept = mean_betweenness, linetype = "dashed", color = "red", size = 1) +
     labs(x = "Node", y = "Betweenness") +
-    theme(axis.title=element_text(size=8, family="TT Times New Roman")) +
+    theme(axis.title=element_text(size=8)) +
     ggtitle("Betweenness Distribution with Mean") +
     theme_minimal() +
-    theme(plot.title = element_text(hjust = 0.5, family="TT Times New Roman"))
+    theme(plot.title = element_text(hjust = 0.5))
 betw_graph
 ggsave("betw_graph.png", betw_graph, device = "png", width = 5, height = 3)
 
