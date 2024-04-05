@@ -1,4 +1,4 @@
-# Network_Analysis_Maastricht_Assignment_Nicoloso
+# Random Network Analysis
 The script enables the creation of a random network, which will be uploaded on Cytoscape for visualization and manipulation. Moreover, the script will analyse the basic features of the network such as the mean degree distribution of the nodes, and it will produce an HTML report file with statistics data and plots for further exploration. The file README contains a detailed description of the code, while the file fastscript.R provides the code as a single command to launch it directly on R. The file additional_features offers more options for the creation and exploration of the network.
 
 # Stage 0: R Packages
